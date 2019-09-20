@@ -26,6 +26,9 @@ module.exports = {
   ],
   'rules': {
     'no-extra-semi': 2,
-    'semi': 0
+    'semi': 0,
+    'require-jsdoc' : 0,
+    'object-curly-spacing': 'always',
+    'eol-last': 2,
   },
 };
