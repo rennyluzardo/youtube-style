@@ -1,16 +1,12 @@
 import React from 'react'
-import Head from 'next/head'
+import SearchBar from '../components/global/SearchBar'
 
-// Styles
-// import styles from '../scss/styles.scss'
+const index = () => {
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
+}
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-    </Head>
-    <h1>Mi body</h1>
-  </div>
-)
-
-export default Home
+export default index;
