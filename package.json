@@ -21,6 +21,7 @@
   "devDependencies": {
     "eslint": "^6.4.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-react": "^7.14.3"
+    "eslint-plugin-react": "^7.14.3",
+    "import-glob-loader": "^1.1.0"
   }
 }
