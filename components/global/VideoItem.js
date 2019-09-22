@@ -1,9 +1,11 @@
 import React from 'react';
 
 const VideoItem = ({ video }) => (
-  <div>
-    <img src={video.snippet.thumbnails.medium.url} alt=""/>
-    <p>{ video.snippet.title }</p>
+  <div className="video-item item">
+    <img className="ui image" src={video.snippet.thumbnails.medium.url} alt=""/>
+    <div className="content">
+      <div className="header">{ video.snippet.title }</div>
+    </div>
   </div>
 )
 
