@@ -6,6 +6,10 @@ export class SearchBar extends Component {
     term: ''
   }
 
+  componentDidMount() {
+    this.props.onTermSubmit('Mark Zuckerberg')
+  }
+
   onInputChange = event => {
     this.setState({ term: event.target.value })
   }
