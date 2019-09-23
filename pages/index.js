@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 // Components
 import SearchBar from '../components/global/SearchBar'
 import VideoList from '../components/global/VideoList'
+import VideoDetail from '../components/global/VideoDetail'
 
 import youtube, { KEY } from '../apis/youtube'
 
 export default class index extends Component {
   state = {
-    videos: []
+    videos: [],
+    selectedVideo: null
   }
 
   onTermSubmit = async term => {
@@ -24,12 +26,26 @@ export default class index extends Component {
     this.setState({ videos: response.data.items })
   }
 
+  onVideoSelect = video => {
+    this.setState({ selectedVideo: video })
+  }
+
   render() {
     return (
       <div className="ui container">
         <SearchBar onTermSubmit={this.onTermSubmit} />
-        <VideoList
-          videos={this.state.videos} />
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="eleven wide column">
+              <VideoDetail video={this.state.selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VideoList
+                videos={this.state.videos}
+                onVideoSelect={this.onVideoSelect} />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
