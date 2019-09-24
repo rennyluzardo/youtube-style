@@ -2,14 +2,24 @@ import React from 'react'
 import App from 'next/app'
 import Layout from '../components/global/Layout'
 import '../scss/styles.scss'
+import { initStore } from '../config/store'
+import flowRight from 'lodash/flowRight'
+import withRedux from 'next-redux-wrapper'
+import { Provider } from 'react-redux'
 
-export default class MyApp extends App {
+class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, store } = this.props
     return (
       <Layout>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Layout>
     )
   }
 }
+
+export default flowRight(
+  withRedux(initStore)
+)(MyApp)
