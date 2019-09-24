@@ -14,26 +14,12 @@ class index extends Component {
   }
 
   onTermSubmit = term => {
-    // const response = await youtube.get('/search', {
-    //   params: {
-    //     q: term,
-    //     part: 'snippet',
-    //     maxResults: 5,
-    //     key: KEY
-    //   }
-    // })
-
     this.props.getVideoDetail(term).then(videoDetail => {
       this.setState({
         videos: videoDetail.data.items,
         selectedVideo: videoDetail.data.items[0]
       })
     })
-
-    // this.setState({
-    //   videos: response.data.items,
-    //   selectedVideo: response.data.items[0]
-    // })
   }
 
   onVideoSelect = video => {
