@@ -1,32 +1,39 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
 // Components
 import SearchBar from '../components/global/SearchBar'
 import VideoList from '../components/global/VideoList'
 import VideoDetail from '../components/global/VideoDetail'
+// Actions
+import { getVideoDetail } from '../actions/videos'
 
-import youtube, { KEY } from '../apis/youtube'
-
-export default class index extends Component {
+class index extends Component {
   state = {
     videos: [],
     selectedVideo: null
   }
 
-  onTermSubmit = async term => {
-    const response = await youtube.get('/search', {
-      params: {
-        q: term,
-        part: 'snippet',
-        maxResults: 5,
-        key: KEY
-      }
+  onTermSubmit = term => {
+    // const response = await youtube.get('/search', {
+    //   params: {
+    //     q: term,
+    //     part: 'snippet',
+    //     maxResults: 5,
+    //     key: KEY
+    //   }
+    // })
+
+    this.props.getVideoDetail(term).then(videoDetail => {
+      this.setState({
+        videos: videoDetail.data.items,
+        selectedVideo: videoDetail.data.items[0]
+      })
     })
 
-    this.setState({
-      videos: response.data.items,
-      selectedVideo: response.data.items[0]
-    })
+    // this.setState({
+    //   videos: response.data.items,
+    //   selectedVideo: response.data.items[0]
+    // })
   }
 
   onVideoSelect = video => {
@@ -53,3 +60,12 @@ export default class index extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    videos: state.videos.videos
+  }),
+  {
+    getVideoDetail
+  }
+)(index)

@@ -14,5 +14,7 @@ export const getVideoDetail = term => dispatch => (
   })
     .then(res => {
       dispatch({ type: SET_VIDEO_DETAIL, payload: res })
+      return res
     })
+    .catch(err => console.log(err))
 )
